@@ -1,0 +1,39 @@
+@import "mixins";
+@import "variables";
+
+
+body, html {
+
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 30px;
+
+    @include respond-to(desktop) {
+        font-size: calc(6px + .27777778vw);
+      }
+    
+      @include respond-to(tablet) {
+        font-size: .9844444444vw;
+      }
+    
+      @include respond-to(mobile) {
+        font-size: 10px;
+      }
+  
+  }
+  
+  
+  #app {
+    margin: 0 ;
+    padding: 0;
+   
+  }
+  
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 8rem ;
+  
+    
+  }
