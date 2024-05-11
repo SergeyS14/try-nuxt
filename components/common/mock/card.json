@@ -1,0 +1,22 @@
+[{
+    "id":"1",
+    "title":"футболка лемешкор",
+    "subtitle":"100% хлопок, DTF печать",
+    "price":"1200",
+    "img":"/img/tshirt1.png"
+},
+{
+    "id":"2",
+    "title":"bbb",
+    "subtitle":"xxxx",
+    "price":"777",
+    "img":"/img/sweat1.png"
+},
+{
+    "id":"3",
+    "title":"bbb",
+    "subtitle":"xxxx",
+    "price":"777",
+    "img":"/img/sweat1.png"
+}
+]

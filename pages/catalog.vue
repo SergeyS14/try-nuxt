@@ -1,11 +1,10 @@
-<script setup lang="ts">
+<script setup>
+
 
 </script>
 
 <template>
-    <div>
-        <h1>Catalog</h1>
-    </div>
+    <LayoutCard></LayoutCard>
 </template>
 
 

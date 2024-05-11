@@ -1,10 +1,20 @@
-<script lang="ts" setup>
-console.log('loaded');
+<script >
+export default{
+
+    emits:['close'],
+    
+    data () {
+        return {
+            isModalOpen: true
+        }
+    }
+}
 
 
 </script>
 
 <template>
+    <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
 <section class="grid">
     <LayoutSidebar />
     <div>
@@ -17,8 +27,8 @@ console.log('loaded');
 
 .grid{
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 8fr;
     min-height: 100vh;
-
+    
 }
 </style>
