@@ -1,20 +1,10 @@
-<script >
-export default{
-
-    emits:['close'],
-    
-    data () {
-        return {
-            isModalOpen: true
-        }
-    }
-}
+<script setup>
 
 
 </script>
 
 <template>
-    <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
+    
 <section class="grid">
     <LayoutSidebar />
     <div>

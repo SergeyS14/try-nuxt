@@ -1,9 +1,20 @@
-<script lang="ts" setup >
+<script>
+export default{
 
+    emits:['close'],
+    
+    data () {
+        return {
+            isModalOpen: false
+        }
+    }
+}
 </script>
 
 <template>
+    
     <div >
+        <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
     <aside class="sidebar">
         <div>
         <NuxtLink to="/" class="sidebar__img">
