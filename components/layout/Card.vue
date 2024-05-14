@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import CARD_DATA from '../common/mock/card.json'
 
 const search = ref('')
@@ -16,24 +16,24 @@ const filterItem = computed(()=>{
 </script>
 
 <template>
-    <div class="search">
-        <input class="search__input" type="text" v-model="search" placeholder="search...">
+    <div :class="$style.search">
+        <input :class="$style.search__input" type="text" v-model="search" placeholder="search...">
     </div>
-    <div class="catalog">
+    <div :class="$style.catalog">
         <NuxtLink
         style="text-decoration: none;"
         v-for="item in filterItem"
         :key="item.id"
         :to="item.id"
         >
-            <article class="card">
-                <img class="card__img" :src="item.img">
-                <span class="card__title">
+            <article :class="$style.card">
+                <img :class="$style.card__img" :src="item.img">
+                <span :class="$style.card__title">
                     {{ item.title }}
                 </span>
-                <div class="card__subtext">
-                    <p class="card__subtext__title" >{{ item.subtitle }}</p>
-                    <p class="card__subtext__price">цена: {{ item.price }}руб</p>
+                <div :class="$style.card__subtext">
+                    <p :class="$style.card__subtext__title" >{{ item.subtitle }}</p>
+                    <p :class="$style.card__subtext__price">цена: {{ item.price }}руб</p>
                 </div>
             </article>
         </NuxtLink>
@@ -42,9 +42,8 @@ const filterItem = computed(()=>{
 
 
 
-<style lang="scss" scoped>
-@import "@/assets/variables.scss";
-@import "@/assets/main.scss";
+<style lang="scss" module>
+
 
     .search{
         text-align: center;
@@ -59,6 +58,12 @@ const filterItem = computed(()=>{
             outline: none;
             border: 1px solid black;
             font-size: 0.6rem;
+            @include respond-to(mobile) {
+            height: 2rem;
+            font-size: 1.5rem;
+            
+           
+        }
 
             &:focus{
             border: 1px solid green;
@@ -76,6 +81,7 @@ const filterItem = computed(()=>{
         @include respond-to(mobile) {
             flex-direction: column;
             align-items: center;
+            
            
         }
     }
@@ -86,7 +92,7 @@ const filterItem = computed(()=>{
         padding: 1rem;
         position: relative;
         @include respond-to(mobile) {
-            width: 25rem;
+            width: 20rem;
         }
 
         &__img{

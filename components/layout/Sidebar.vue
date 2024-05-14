@@ -17,8 +17,8 @@ export default{
         <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
     <aside class="sidebar">
         <div>
-        <NuxtLink to="/" class="sidebar__img">
-            <NuxtImg src="/logo.svg" alt="logo" width="100px"/>
+        <NuxtLink to="/" >
+            <NuxtImg class="sidebar__img" src="/logo.svg" alt="logo" />
         </NuxtLink>
         <nav class="sidebar__nav">
             <ul class="sidebar__ul">
@@ -62,6 +62,14 @@ export default{
             margin: 0;
         }
         }
+        &__img{
+            width: 4rem;
+            @include respond-to(mobile) {
+            width: 8rem;
+           
+           
+        }
+        }
 
         &__item{
             display:flex;
@@ -73,6 +81,11 @@ export default{
             display: flex;
             gap: 0.3rem;
             padding-bottom: 2rem;
+            @include respond-to(mobile) {
+            flex-direction: column;
+            align-items: center;
+           
+        }
         }
 
         .item-login {
@@ -82,7 +95,7 @@ export default{
         font-size: 0.8rem;
         cursor: pointer;
         @include respond-to(mobile) {
-        padding-bottom: 1.5rem;
+       
         font-size: 2rem;
         
         }
@@ -102,7 +115,7 @@ export default{
         padding-left: 0.2rem;
         cursor: pointer;
         @include respond-to(mobile) {
-        padding-bottom: 1.5rem;
+        border: none;
         font-size: 2rem;
        
         

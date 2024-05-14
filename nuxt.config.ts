@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+const pathAssets = "assets"
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ["@nuxt/image",
@@ -17,5 +19,13 @@ export default defineNuxtConfig({
 }]
 ],
   css:["assets/main.scss"],
+  vite: {
+    css: {
+           preprocessorOptions: {
+               scss: {
+                   additionalData: `@import "${pathAssets}/variables"; @import "${pathAssets}/mixins"; ;`,
+               },
+         },
+  }}
   
 })

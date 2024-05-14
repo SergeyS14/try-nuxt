@@ -20,8 +20,7 @@ import  MENU_DATA  from '../common/mock/menu.json';
 
 
 <style lang="scss">
-@import "@/assets/variables.scss";
-@import "@/assets/main.scss";
+
     .item-menu{
         font-family: 'Freeman';
         text-decoration: none;
