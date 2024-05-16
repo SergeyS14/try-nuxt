@@ -81,8 +81,6 @@ const filterItem = computed(()=>{
         @include respond-to(mobile) {
             flex-direction: column;
             align-items: center;
-            
-           
         }
     }
 

@@ -2,11 +2,18 @@
 export default{
 
     emits:['close'],
+    props:['currentUser'],
     
     data () {
         return {
             isModalOpen: false
         }
+    },
+
+    methods:{
+        logout() {
+            this.$emit('logout')
+        },
     }
 }
 </script>
@@ -29,7 +36,9 @@ export default{
         </nav>
         </div>
         <div class="sidebar__reg">
-            <p class="item-login" @click="isModalOpen = true"> Log in</p>
+            <p v-if="currentUser">login</p>
+            <button v-if="currentUser" @click="logout">exit</button>
+            <p v-else class="item-login" @click="isModalOpen = true"> Log in</p>
             <p class="item-signup"> Sign up</p>
         </div>
     </aside>
@@ -37,8 +46,7 @@ export default{
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/variables.scss";
-@import "@/assets/main.scss";
+
 
     .sidebar{
         padding:1rem;

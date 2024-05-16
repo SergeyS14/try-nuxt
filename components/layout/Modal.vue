@@ -41,9 +41,13 @@ export default defineComponent({
     &__block{
         background-color: white;
         width: 25%;
-        height: 20rem;
+        height: 15rem;
         border-radius: 1rem;
         text-align: end;
+        @include respond-to (mobile){
+            width: 90%;
+            height: 50%;
+        }
     }
     &__item{
         padding: 2rem;
