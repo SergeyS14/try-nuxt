@@ -1,48 +1,50 @@
-<script>
-export default{
+<script lang="ts" setup>
+import { ref, computed, defineProps, defineEmits } from 'vue';
 
-    emits:['close'],
-    props:['currentUser'],
-    
-    data () {
-        return {
-            isModalOpen: false
-        }
-    },
+const props = defineProps<{ currentUser: {id:string; name: string; email:string; password: string;} | null}>();
+const emit = defineEmits(['logout', 'open-modal']);
 
-    methods:{
-        logout() {
-            this.$emit('logout')
-        },
-    }
-}
+const isModalOpen = ref(false);
+
+const logout = () => {
+  emit('logout');
+};
+
+const openModal = () => {
+  emit('open-modal');
+};
+
+const currentUser = computed(() => props.currentUser);
 </script>
 
 <template>
-    
-    <div >
-        <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
+  <div>
+    <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
     <aside class="sidebar">
-        <div>
-        <NuxtLink to="/" >
-            <NuxtImg class="sidebar__img" src="/logo.svg" alt="logo" />
+      <div>
+        <NuxtLink to="/">
+          <NuxtImg class="sidebar__img" src="/logo.svg" alt="logo" />
         </NuxtLink>
         <nav class="sidebar__nav">
-            <ul class="sidebar__ul">
-                <li style=" list-style-type:none">
-                    <LayoutMenu class="sidebar__item"/>
-                </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-            </ul>
+          <ul class="sidebar__ul">
+            <li style="list-style-type:none">
+              <LayoutMenu class="sidebar__item"/>
+            </li>
+            <li v-if="currentUser" style="list-style-type:none">
+                <NuxtLink to="cabinet">
+                    <p class="sidebar__cabinet">asdasd</p>
+                </NuxtLink>
+            </li>
+          </ul>
         </nav>
-        </div>
-        <div class="sidebar__reg">
-            <p v-if="currentUser">login</p>
-            <button v-if="currentUser" @click="logout">exit</button>
-            <p v-else class="item-login" @click="isModalOpen = true"> Log in</p>
-            <p class="item-signup"> Sign up</p>
-        </div>
+      </div>
+      <div class="sidebar__reg">
+        <p class="item-login" v-if="currentUser"  @click="logout">logout {{ currentUser.name }}</p>
+        <p v-else class="item-login" @click="openModal">Log in</p>
+        <p v-if="!currentUser" class="item-signup">Sign up</p>
+      </div>
     </aside>
-</div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -61,6 +63,20 @@ export default{
         margin: 0;
     }   
         
+        &__cabinet{
+            font-family: 'Freeman';
+            text-decoration: none;
+            color: black;
+            font-size: 1rem;
+            @include respond-to(mobile) {
+            padding-bottom: 1.5rem;
+            font-size: 2rem;}
+            &:hover{
+                text-decoration: none;
+                color: red;
+                transition: 0.5s ease-in-out;
+            }
+        }
 
         &__ul{
             padding: 0;
