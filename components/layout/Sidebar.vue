@@ -2,9 +2,10 @@
 import type { SidebarProps } from '../common/types/types';
 
 const props = defineProps<SidebarProps>();
-const emit = defineEmits(['logout', 'open-modal']);
+const emit = defineEmits(['logout', 'open-modal','open-modal-reg']);
 
 const isModalOpen = ref(false);
+const isModalOpenReg = ref(false);
 
 const logout = () => {
   emit('logout');
@@ -14,12 +15,17 @@ const openModal = () => {
   emit('open-modal');
 };
 
+const openModalReg = () =>{
+  emit('open-modal-reg')
+}
+
 
 </script>
 
 <template>
   <div>
     <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
+    <LayoutModalReg v-if="isModalOpenReg" @close="isModalOpenReg = false"></LayoutModalReg>
     <aside :class="$style.sidebar">
       <div>
         <NuxtLink to="/">
@@ -41,7 +47,7 @@ const openModal = () => {
       <div :class="$style.sidebar__reg">
         <p :class="$style.itemLogin" v-if="currentUser"  @click="logout">logout {{ currentUser.name }}</p>
         <p v-else :class="$style.itemLogin" @click="openModal">Log in</p>
-        <p v-if="!currentUser" :class="$style.itemSignup">Sign up</p>
+        <p v-if="!currentUser" @click="openModalReg" :class="$style.itemSignup">Sign up</p>
       </div>
     </aside>
   </div>

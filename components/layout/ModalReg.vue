@@ -1,23 +1,63 @@
 <script lang="ts" setup>
 import USER_DATA from '../common/mock/user.json';
 
+const name = ref('');
 const email = ref('');
 const password = ref('');
+const secPassword = ref('');
 const error = ref<string | null>(null);
 
-const emit = defineEmits(['authenticated', 'close']);
+const emit = defineEmits([ 'close']);
 
 const login = () => {
   const foundUser = USER_DATA.find(u => u.email === email.value && u.password === password.value);
   if (foundUser) {
     error.value = null;
-    emit('authenticated', foundUser);
+
     emit('close'); 
   } else {
     error.value = 'Invalid email or password';
     password.value = '';
   }
 };
+
+const validEmail = (email: string) =>{
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+const reg = () =>{
+    if (!name.value) {
+        error.value = 'not name';
+        return;
+    }
+    if (!email.value) {
+        error.value = 'not email';
+        return;
+    }
+    if (!validEmail(email.value)) {
+        error.value = 'invalid format email';
+        return;
+    }
+    if (!password.value) {
+        error.value = 'not passsword';
+        return;
+    }
+    if (password.value !== secPassword.value) {
+        error.value = 'not repeat password';
+        return;
+    }
+
+    const foundUser = USER_DATA.find(u => u.email === email.value);
+    if (foundUser) {
+        error.value = 'email registered';
+        return;
+    }
+
+    error.value = null;
+
+    emit('close');
+}
 
 const clearError = () => {
   error.value = null;
@@ -37,11 +77,15 @@ const close = () => {
         </button>
       </div>
       <div :class="$style.auth">
+        <lable :for="name" :class="$style.auth__item">Enter Name</lable>
+        <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="name" type="name" placeholder="name" @input="clearError">
         <lable :for="email" :class="$style.auth__item">Enter Email</lable>
         <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="email" type="email" placeholder="email" @input="clearError">
         <label :for="password" :class="$style.auth__item">Enter Password</label>
         <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="password" type="password" placeholder="password" @input="clearError">
-        <button :class="$style.auth__btn" @click="login">Login</button>
+        <label :for="secPassword" :class="$style.auth__item">Enter Password repeat</label>
+        <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="secPassword" type="password" placeholder="password" @input="clearError">
+        <button :class="$style.auth__btn" @click="reg">Registration</button>
         <p v-if="error" :class="$style.errorText">{{ error }}</p>
       </div>
     </div>
@@ -61,7 +105,7 @@ const close = () => {
     &__block{
         background-color: white;
         width: 25%;
-        height: 15rem;
+        height: 19rem;
         border-radius: 1rem;
         text-align: end;
         @include respond-to (mobile){
