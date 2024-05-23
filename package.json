@@ -18,6 +18,9 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@nuxtjs/google-fonts": "^3.2.0"
+    "@nuxt/types": "^2.17.3",
+    "@nuxt/typescript-build": "^3.0.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "typescript": "^5.4.5"
   }
 }

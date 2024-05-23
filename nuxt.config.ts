@@ -3,6 +3,9 @@
 const pathAssets = "assets"
 
 export default defineNuxtConfig({
+  typescript: {
+    strict: true
+  },
   devtools: { enabled: false },
   modules: ["@nuxt/image",
   ['@nuxtjs/google-fonts', {

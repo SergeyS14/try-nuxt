@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref, computed, defineProps, defineEmits } from 'vue';
+import type { SidebarProps } from '../common/types/types';
 
-const props = defineProps<{ currentUser: {id:string; name: string; email:string; password: string;} | null}>();
+const props = defineProps<SidebarProps>();
 const emit = defineEmits(['logout', 'open-modal']);
 
 const isModalOpen = ref(false);
@@ -14,40 +14,40 @@ const openModal = () => {
   emit('open-modal');
 };
 
-const currentUser = computed(() => props.currentUser);
+
 </script>
 
 <template>
   <div>
     <LayoutModal v-if="isModalOpen" @close="isModalOpen = false"></LayoutModal>
-    <aside class="sidebar">
+    <aside :class="$style.sidebar">
       <div>
         <NuxtLink to="/">
-          <NuxtImg class="sidebar__img" src="/logo.svg" alt="logo" />
+          <NuxtImg :class="$style.sidebar__img" src="/logo.svg" alt="logo" />
         </NuxtLink>
-        <nav class="sidebar__nav">
-          <ul class="sidebar__ul">
+        <nav :class="$style.sidebar__nav">
+          <ul :class="$style.sidebar__ul">
             <li style="list-style-type:none">
-              <LayoutMenu class="sidebar__item"/>
+              <LayoutMenu :class="$style.sidebar__item"/>
             </li>
             <li v-if="currentUser" style="list-style-type:none">
                 <NuxtLink to="cabinet">
-                    <p class="sidebar__cabinet">asdasd</p>
+                    <p :class="$style.sidebar__cabinet">asdasd</p>
                 </NuxtLink>
             </li>
           </ul>
         </nav>
       </div>
-      <div class="sidebar__reg">
-        <p class="item-login" v-if="currentUser"  @click="logout">logout {{ currentUser.name }}</p>
-        <p v-else class="item-login" @click="openModal">Log in</p>
-        <p v-if="!currentUser" class="item-signup">Sign up</p>
+      <div :class="$style.sidebar__reg">
+        <p :class="$style.itemLogin" v-if="currentUser"  @click="logout">logout {{ currentUser.name }}</p>
+        <p v-else :class="$style.itemLogin" @click="openModal">Log in</p>
+        <p v-if="!currentUser" :class="$style.itemSignup">Sign up</p>
       </div>
     </aside>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 
 
     .sidebar{
@@ -112,7 +112,7 @@ const currentUser = computed(() => props.currentUser);
         }
         }
 
-        .item-login {
+        .itemLogin {
         font-family: 'Lato';
         text-decoration: none;
         color: black;
@@ -130,7 +130,7 @@ const currentUser = computed(() => props.currentUser);
             transition: 0.5s ease-in-out;
         }
         }
-        .item-signup {
+        .itemSignup {
         font-family: 'Lato';
         text-decoration: none;
         color: black;

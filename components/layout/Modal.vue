@@ -33,14 +33,14 @@ const close = () => {
   <div :class="$style.modal" @click.self="close">
     <div :class="$style.modal__block">
       <div>
-        <button :class="$style.modal__btn" @click="close">
+        <button :class="$style.modalBtn" @click="close">
           <NuxtImg width="25" height="25" :class="$style.sidebar__img" src="/close.svg" alt="logo" />
         </button>
       </div>
       <div :class="$style.auth">
-        <span class="$style.auth__item">Enter Email</span>
+        <lable :for="email" :class="$style.auth__item">Enter Email</lable>
         <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="email" type="email" placeholder="email" @input="clearError">
-        <span :class="$style.auth__item">Enter Password</span>
+        <label :for="password" :class="$style.auth__item">Enter Password</label>
         <input :class="{[$style.auth__input]: true, [$style.error]:error}" v-model="password" type="password" placeholder="password" @input="clearError">
         <button :class="$style.auth__btn" @click="login">Login</button>
         <p v-if="error" :class="$style.errorText">{{ error }}</p>
@@ -70,7 +70,7 @@ const close = () => {
             height: 50%;
         }
     }
-    &__btn{
+    &Btn{
         margin-right :0.5rem;
         margin-top: .5rem;
         border: none;

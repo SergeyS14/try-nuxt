@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import Sidebar from '~/components/layout/Sidebar.vue';
 import Modal from '~/components/layout/Modal.vue';
 
-const currentUser = ref<{ id: string; name: string; email: string; password: string; } | null>(null);
+import type {IUser} from '../components/common/types/types'
 
-const handleAuth = (user: { id: string; name: string; email: string; password: string; }) => {
+const currentUser = ref<IUser | null>(null);
+
+const handleAuth = (user: IUser) => {
   currentUser.value = user;
 };
 
