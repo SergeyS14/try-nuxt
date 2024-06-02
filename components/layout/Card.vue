@@ -35,6 +35,7 @@ const filterItem = computed(()=>{
                     <p :class="$style.card__subtext__title" >{{ item.subtitle }}</p>
                     <p :class="$style.card__subtext__price">цена: {{ item.price }}руб</p>
                     <p>asdasd</p>
+                    <div></div>
                 </div>
             </article>
         </NuxtLink>
